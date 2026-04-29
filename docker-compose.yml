@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  openclaw:
+    image: openclaw/openclaw:2026.4.24
+    container_name: mimo-agent
+    ports:
+      - "18999:18789"
+    volumes:
+      - ./openclaw.json:/home/node/.openclaw/openclaw.json
+      - ./workspace:/home/node/.openclaw/workspace
+    environment:
+      - NODE_ENV=production
+      - MIMO_API_KEY=${MIMO_API_KEY}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - TAVILY_API_KEY=${TAVILY_API_KEY}
+      - GATEWAY_TOKEN=${GATEWAY_TOKEN}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:18789/healthz || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

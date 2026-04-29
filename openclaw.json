@@ -1,0 +1,50 @@
+{
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "xiaomi-mimo": {
+        "api": "openai-completions",
+        "baseUrl": "https://token-plan-cn.xiaomimimo.com/v1",
+        "apiKey": "${MIMO_API_KEY}",
+        "models": [
+          { "id": "mimo-v2.5", "name": "MiMo V2.5" },
+          { "id": "mimo-v2.5-pro", "name": "MiMo V2.5 Pro" }
+        ]
+      },
+      "deepseek": {
+        "api": "openai-completions",
+        "baseUrl": "https://api.deepseek.com/v1",
+        "apiKey": "${DEEPSEEK_API_KEY}",
+        "models": [
+          { "id": "deepseek-v4-flash", "name": "DeepSeek V4 Flash" },
+          { "id": "deepseek-v4-pro", "name": "DeepSeek V4 Pro" }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": { "primary": "xiaomi-mimo/mimo-v2.5-pro" },
+      "workspace": "/home/node/.openclaw/workspace"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "tavily": {
+        "enabled": true,
+        "config": { "webSearch": { "apiKey": "${TAVILY_API_KEY}" } }
+      },
+      "active-memory": { "enabled": true },
+      "memory-wiki": { "enabled": true },
+      "document-extract": { "enabled": true },
+      "web-readability": { "enabled": true },
+      "llm-task": { "enabled": true },
+      "bonjour": { "enabled": false }
+    }
+  },
+  "tools": { "web": { "search": { "provider": "tavily" } } },
+  "gateway": {
+    "auth": { "mode": "token", "token": "${GATEWAY_TOKEN}" },
+    "controlUi": { "allowedOrigins": ["http://127.0.0.1:18999"] }
+  }
+}
