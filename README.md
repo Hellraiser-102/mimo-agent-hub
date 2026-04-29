@@ -36,7 +36,7 @@ MiMo Agent Hub 通过**智能路由 + 自动降级**解决这个问题。
 ```bash
 # 克隆仓库
 git clone https://github.com/Hellraiser-102/mimo-agent-hub.git
-cd mimo-agent-workspace
+cd mimo-agent-hub
 
 # 配置环境变量
 cp .env.example .env
