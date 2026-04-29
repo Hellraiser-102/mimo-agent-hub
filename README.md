@@ -89,7 +89,7 @@ MIMO_API_KEY=your_key DEEPSEEK_API_KEY=your_key node mimo-benchmark.js
 ## 目录结构
 
 ```
-mimo-agent-workspace/
+mimo-agent-hub/
 ├── README.md                 ← 本文件
 ├── .env.example              ← 环境变量模板
 ├── docker-compose.yml        ← 容器部署配置
